@@ -124,11 +124,19 @@ const IndexPage = () => {
         <div className="IndexPage__winner">
           <div className="IndexPage__winner__text">
             Pop on your{" "}
-            <span role="img" className="IndexPage__winner__emoji">
+            <span
+              role="img"
+              aria-label="sunglass"
+              className="IndexPage__winner__emoji"
+            >
               😎
             </span>
             , and bring your{" "}
-            <span role="img" className="IndexPage__winner__emoji">
+            <span
+              role="img"
+              aria-label="laptop"
+              className="IndexPage__winner__emoji"
+            >
               💻
             </span>{" "}
             because you're going to:
