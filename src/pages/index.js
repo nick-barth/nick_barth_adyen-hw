@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react"
-
+import NbSpinner from "../components/NbSpinner"
 import NbCard from "../components/NbCard"
-
+import NbConfetti from "../components/NbConfetti"
 import { normalise } from "../utils/math"
+
+import "./styles.scss"
 
 //  env
 const accuweatherKey = "AHzBgmQPIbJ2fUBKNGvuWbzNguOwcHba"
+
+// Arbitrary Date
+const TODAY = "05/10/2020"
 
 // Keys from Accuweather
 const LOCATIONS = {
@@ -14,9 +19,16 @@ const LOCATIONS = {
   BUD: "187423",
 }
 
+const i18n = {
+  AMS: "Amsterdam",
+  MAD: "Madrid",
+  BUD: "Budapest",
+}
+
 const IndexPage = () => {
   const [weather, setWeather] = useState(null)
   const [flights, setFlights] = useState(null)
+  const [scores, setScores] = useState(null)
   const [winner, setWinner] = useState(null)
   const [isRawLoading, setIsRawLoading] = useState(true)
   // PRICES
@@ -24,7 +36,7 @@ const IndexPage = () => {
     Promise.all(
       Object.keys(LOCATIONS).map(locale =>
         fetch(
-          `https://api.skypicker.com/flights?flyFrom=DPS&to=${locale}&dateFrom=05/10/2020&dateTo=05/10/2020&partner=picky&v=3`
+          `https://api.skypicker.com/flights?flyFrom=DPS&to=${locale}&dateFrom=${TODAY}&dateTo=${TODAY}&partner=picky&v=3`
         )
           .then(response => {
             return response.json()
@@ -60,6 +72,7 @@ const IndexPage = () => {
     })
   }, [])
 
+  // Zedscore calculations
   useEffect(() => {
     if (flights && weather) {
       setIsRawLoading(false)
@@ -73,39 +86,51 @@ const IndexPage = () => {
           z: flightsZed[index] + weathersZed[index],
         }
       })
+      setScores(scoredLocales)
       const sortedScoredLocales = scoredLocales.sort((a, b) => a.z - b.z)
       setWinner(sortedScoredLocales[0])
     }
   }, [flights, weather])
 
   return (
-    <div>
+    <section className="IndexPage">
+      {winner && <NbConfetti />}
       <h1>Jamie's Workplace Helper</h1>
       <p>
-        Jamie is leaving from Bali on May 10th, and she wants to figure out the
-        best place to work!
+        Jamie is in Bali, if she left today, which office has the cheapest
+        airfare, and warmest day!
       </p>
 
-      <div className="IndexPage__list-container">
-        <ol>
-          {isRawLoading
-            ? "Loading"
-            : Object.keys(LOCATIONS).map(key => {
-                return (
-                  <li>
-                    <NbCard
-                      winner={winner.locale === key}
-                      key={key}
-                      title={key}
-                      price={flights.find(f => f.locale === key).price}
-                      temp={weather.find(f => f.locale === key).temp}
-                    />
-                  </li>
-                )
-              })}
-        </ol>
-      </div>
-    </div>
+      <ul className="IndexPage__list-container">
+        {isRawLoading ? (
+          <NbSpinner dark />
+        ) : (
+          Object.keys(LOCATIONS).map(key => {
+            return (
+              <li className="IndexPage__list-item" key={key}>
+                <NbCard
+                  winner={winner.locale === key}
+                  title={key}
+                  price={flights.find(f => f.locale === key).price}
+                  temp={weather.find(w => w.locale === key).temp}
+                  score={scores.find(s => s.locale === key).z.toFixed(2)}
+                />
+              </li>
+            )
+          })
+        )}
+      </ul>
+      {winner && (
+        <div className="IndexPage__winner">
+          <div className="IndexPage__winner__text">
+            Pop on your <span className="IndexPage__winner__emoji">😎</span>,
+            and bring your <span className="IndexPage__winner__emoji">💻</span>{" "}
+            because you're going to:
+          </div>
+          <div className="IndexPage__winner__banner">{i18n[winner.locale]}</div>
+        </div>
+      )}
+    </section>
   )
 }
 

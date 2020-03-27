@@ -1,0 +1,26 @@
+.NbSpinner {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  border: 2px solid #fff;
+  border-color: #fff #fff #fff transparent;
+  animation: infinite linear 0.75s rotation;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  &.NbSpinner--dark {
+    border: 2px solid #663399;
+    border-color: #663399 #663399 #663399 transparent;
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: translateY(-50%) translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateY(-50%) translateX(-50%) rotate(360deg);
+  }
+}

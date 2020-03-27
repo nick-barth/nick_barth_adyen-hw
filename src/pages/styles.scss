@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fcfaff;
+  font-family: "Droid Serif";
+}
+
+.IndexPage {
+  max-width: 1400px;
+  padding: 20px;
+  &__list-container {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 10px;
+  }
+  &__list-item {
+    padding: 0;
+  }
+
+  &__winner__text {
+    margin-bottom: 20px;
+  }
+
+  &__winner__banner {
+    font-size: 80px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  &__winner__emoji {
+    font-size: 32px;
+  }
+}

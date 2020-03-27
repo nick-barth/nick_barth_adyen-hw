@@ -1,0 +1,30 @@
+.NbConfetti {
+  position: absolute;
+
+  $colors: (#f1defa, #663399, #452475);
+
+  @for $i from 0 through 300 {
+    $w: random(50) + 5;
+    $l: random(100) - 10;
+    &.NbConfetti--#{$i} {
+      width: #{$w}px;
+      height: #{$w * 0.4}px;
+      z-index: 1000;
+      background-color: nth($colors, random(3));
+      top: -10%;
+      left: unquote($l + "%");
+      opacity: random() + 0.5;
+      transform: rotate(#{random() * 360}deg);
+      animation: drop-#{$i}
+        unquote(6 + random() + "s")
+        unquote(random(100) / 100 + "s");
+    }
+
+    @keyframes drop-#{$i} {
+      100% {
+        top: 110%;
+        left: unquote($l + random(15) + "%");
+      }
+    }
+  }
+}
