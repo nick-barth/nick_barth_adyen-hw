@@ -7,7 +7,7 @@ const NbConfetti = () => {
   return (
     <div>
       {confettiElements.map((confetti, index) => {
-        return <div className={`NbConfetti NbConfetti--${index}`} />
+        return <div key={index} className={`NbConfetti NbConfetti--${index}`} />
       })}
     </div>
   )

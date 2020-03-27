@@ -55,7 +55,7 @@ const IndexPage = () => {
     Promise.all(
       Object.keys(LOCATIONS).map(locale =>
         fetch(
-          `http://dataservice.accuweather.com/forecasts/v1/daily/1day/${LOCATIONS[locale]}?apikey=${accuweatherKey}`
+          `https://dataservice.accuweather.com/forecasts/v1/daily/1day/${LOCATIONS[locale]}?apikey=${accuweatherKey}`
         )
           .then(response => {
             return response.json()
@@ -79,11 +79,11 @@ const IndexPage = () => {
       const flghtsArray = flights.map(item => item.price)
       const weatherArray = weather.map(item => item.temp)
       const flightsZed = normalise(flghtsArray)
-      const weathersZed = normalise(weatherArray)
+      const weathersZed = normalise(weatherArray).map(i => i * -1)
       const scoredLocales = Object.keys(LOCATIONS).map((key, index) => {
         return {
           locale: key,
-          z: flightsZed[index] + weathersZed[index],
+          z: (flightsZed[index] + weathersZed[index]) / 2,
         }
       })
       setScores(scoredLocales)
@@ -123,8 +123,14 @@ const IndexPage = () => {
       {winner && (
         <div className="IndexPage__winner">
           <div className="IndexPage__winner__text">
-            Pop on your <span className="IndexPage__winner__emoji">😎</span>,
-            and bring your <span className="IndexPage__winner__emoji">💻</span>{" "}
+            Pop on your{" "}
+            <span role="img" className="IndexPage__winner__emoji">
+              😎
+            </span>
+            , and bring your{" "}
+            <span role="img" className="IndexPage__winner__emoji">
+              💻
+            </span>{" "}
             because you're going to:
           </div>
           <div className="IndexPage__winner__banner">{i18n[winner.locale]}</div>
