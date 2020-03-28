@@ -55,15 +55,23 @@ const IndexPage = () => {
     Promise.all(
       Object.keys(LOCATIONS).map(locale =>
         fetch(
-          `https://dataservice.accuweather.com/forecasts/v1/daily/1day/${LOCATIONS[locale]}?apikey=${accuweatherKey}`
+          `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${LOCATIONS[locale]}?apikey=${accuweatherKey}`
         )
           .then(response => {
             return response.json()
           })
           .then(data => {
+            const averageTemperature = data.DailyForecasts.map(
+              d => d.Temperature.Minimum.Value + d.Temperature.Maximum.Value / 2
+            )
+            const avgTemp =
+              averageTemperature.reduce((a, b) => a + b, 0) /
+                averageTemperature.length +
+              1
+
             return {
               locale,
-              temp: data.DailyForecasts[0].Temperature.Minimum.Value,
+              temp: avgTemp,
             }
           })
       )
