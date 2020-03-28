@@ -8,7 +8,7 @@ import { normalise } from "../utils/math"
 import "./styles.scss"
 
 //  env
-const accuweatherKey = "AHzBgmQPIbJ2fUBKNGvuWbzNguOwcHba"
+const accuweatherKey = "lHmt4ICw4SxudJ1DSsnUAe4KnGsLSchP"
 
 // Arbitrary Date
 const TODAY = "05/10/2020"
