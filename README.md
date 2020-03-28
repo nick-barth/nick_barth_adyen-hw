@@ -17,6 +17,7 @@ The assignment was supossed to take 4 hours, I clocked myself at a little under 
 
 Things I didn't do but probably should have done:
  * Error handling
+ * Tooltips to explain what a z-score is
  * Testing
  * TypeScript
  * Caching
