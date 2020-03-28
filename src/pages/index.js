@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import NbSpinner from "../components/NbSpinner"
 import NbCard from "../components/NbCard"
 import NbConfetti from "../components/NbConfetti"
+import moment from "moment"
 import { normalise } from "../utils/math"
 
 import "./styles.scss"
@@ -64,6 +65,9 @@ const IndexPage = () => {
             const averageTemperature = data.DailyForecasts.map(
               d => d.Temperature.Minimum.Value + d.Temperature.Maximum.Value / 2
             )
+            const dates = data.DailyForecasts.map(d =>
+              moment(d.Date).format("DD")
+            )
             const avgTemp =
               averageTemperature.reduce((a, b) => a + b, 0) /
                 averageTemperature.length +
@@ -72,6 +76,10 @@ const IndexPage = () => {
             return {
               locale,
               temp: avgTemp,
+              chartData: {
+                temps: averageTemperature,
+                dates,
+              },
             }
           })
       )
@@ -122,6 +130,7 @@ const IndexPage = () => {
                   price={flights.find(f => f.locale === key).price}
                   temp={weather.find(w => w.locale === key).temp}
                   score={scores.find(s => s.locale === key).z.toFixed(2)}
+                  chartData={weather.find(w => w.locale === key).chartData}
                 />
               </li>
             )

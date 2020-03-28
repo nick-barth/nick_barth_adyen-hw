@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Nick Barth",
   "dependencies": {
+    "chart.js": "^2.9.3",
     "gatsby": "^2.19.45",
     "gatsby-image": "^2.2.44",
     "gatsby-plugin-manifest": "^2.2.48",
@@ -15,9 +16,11 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.1.56",
     "gatsby-transformer-sharp": "^2.3.19",
+    "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1"
   },
