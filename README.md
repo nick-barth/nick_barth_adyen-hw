@@ -5,11 +5,8 @@
 https://modest-cray-8c0931.netlify.com/
 
 ### 🚀 Run Locally
-
-    ```
     npm install
     gatsby develop
-    ```
 
 ### 🦀 Notes
 The situation I pictured, Jamie was indecisive, and needed help being told where to work for the next week.  So after leaving Bali, she was shown the average temperature for the next week and cost of airfare from Bali -> N.  Additionally, we calculated a Z-score for each location, with 50% of weight on each weather + airfare, this way she could easily assess which office she wanted to go to.  I wanted to make it a bit cutesy as well, because she was going back to work from vacation, so I wanted to get her excited, thus the confetti.
