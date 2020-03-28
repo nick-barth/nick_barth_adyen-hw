@@ -13,6 +13,14 @@ The situation I pictured, Jamie was indecisive, and needed help being told where
 
 In the future, I would use Geolocation to say where she was instead of arbitrarily choosing Bali.  I would also compare the airfare from each office, to nearly everywhere else!  I would do temperature graphs over time, line charts would look nice.  This way we could deliver a better score.  I just decided while writing this READ.ME I would add line charts for temperature over the next week. Brb 5 minutes.
 
+The assignment was supossed to take 4 hours, I clocked myself at a little under 5 mainly because I was messing around with confetti.
+
+Things I didn't do but probably should have done:
+Error handling
+Testing
+TypeScript
+Caching
+Performance monitoring
 
 Thanks for providing me with a challenge that allows me to exercise creativity, this was enjoyable.
 
