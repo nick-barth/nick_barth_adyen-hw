@@ -10,14 +10,18 @@ const LineChart = ({ labels, values }) => {
         fill: false,
         lineTension: 0,
         borderColor: "#b17acc",
-        pointBackgroundColor: "#663399",
-        pointBorderColor: "#663399",
+        pointBackgroundColor: "#000000",
+        pointBorderColor: "#000000",
         data: values,
       },
     ],
   }
   const options = {
     hover: { mode: null },
+    title: {
+      display: true,
+      text: "Temperature over the next 5 days",
+    },
     layout: {
       padding: {
         top: 0,
