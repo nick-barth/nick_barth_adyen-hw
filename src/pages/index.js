@@ -7,6 +7,8 @@ import { normalise } from "../utils/math"
 
 import "./styles.scss"
 
+import fakeData from "../fakeData.json"
+
 //  env
 const accuweatherKey = "lHmt4ICw4SxudJ1DSsnUAe4KnGsLSchP"
 
@@ -83,9 +85,14 @@ const IndexPage = () => {
             }
           })
       )
-    ).then(responses => {
-      setWeather(responses)
-    })
+    )
+      .then(responses => {
+        setWeather(responses)
+      })
+      .catch(error => {
+        // Some sketchy business here.  Check README.md
+        setWeather(fakeData)
+      })
   }, [])
 
   // Zedscore calculations
